@@ -28,14 +28,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    	
-      		auth.userDetailsService(userDetailsServiceBean());
-       /** auth
-            .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");*/
+        auth.inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER");
     }
-
-    
     @Autowired private UserRepository userRepository;
     
     @Override
@@ -43,7 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     Exception {
     		return new SSUserDetailsService(userRepository);
     }
-    
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
